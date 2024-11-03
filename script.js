@@ -39,6 +39,29 @@ function loadFilteredSongs(filteredSongs) {
   });
 }
 
+  function searchSongs() {
+  const query = document.getElementById("searchInput").value.toLowerCase();
+  const filteredSongs = songs.filter(song => 
+    song.title.toLowerCase().includes(query) || 
+    song.artist.toLowerCase().includes(query)
+  );
+  
+  loadFilteredSongs(filteredSongs);
+}
+
+function loadFilteredSongs(filteredSongs) {
+  const songList = document.getElementById("songList");
+  songList.innerHTML = "";
+  filteredSongs.forEach(song => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <input type="checkbox" class="song-checkbox" data-song-id="${song.id}">
+      ${song.title} - ${song.artist}
+    `;
+    songList.appendChild(li);
+  });
+}
+
   let songs = [];
 let playlist = [];
 let currentSongIndex = 0;
