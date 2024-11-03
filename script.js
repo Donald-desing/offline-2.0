@@ -16,6 +16,52 @@ window.onload = function() {
 function loadSongLibrary() {
   const songList = document.getElementById("songList");
   songList.innerHTML = "";
+  function searchSongs() {
+  const query = document.getElementById("searchInput").value.toLowerCase();
+  const filteredSongs = songs.filter(song => 
+    song.title.toLowerCase().includes(query) || 
+    song.artist.toLowerCase().includes(query)
+  );
+  
+  loadFilteredSongs(filteredSongs);
+}
+
+function loadFilteredSongs(filteredSongs) {
+  const songList = document.getElementById("songList");
+  songList.innerHTML = "";
+  filteredSongs.forEach(song => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <input type="checkbox" class="song-checkbox" data-song-id="${song.id}">
+      ${song.title} - ${song.artist}
+    `;
+    songList.appendChild(li);
+  });
+}
+
+  function searchSongs() {
+  const query = document.getElementById("searchInput").value.toLowerCase();
+  const filteredSongs = songs.filter(song => 
+    song.title.toLowerCase().includes(query) || 
+    song.artist.toLowerCase().includes(query)
+  );
+  
+  loadFilteredSongs(filteredSongs);
+}
+
+function loadFilteredSongs(filteredSongs) {
+  const songList = document.getElementById("songList");
+  songList.innerHTML = "";
+  filteredSongs.forEach(song => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <input type="checkbox" class="song-checkbox" data-song-id="${song.id}">
+      ${song.title} - ${song.artist}
+    `;
+    songList.appendChild(li);
+  });
+}
+
   let songs = [];
 let playlist = [];
 let currentSongIndex = 0;
@@ -156,4 +202,69 @@ function nextSong() {
 function prevSong() {
   currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
   loadSongDetails(playlist[currentSongIndex]);
+}
+let sleepTimer;
+
+function setSleepTimer(minutes) {
+  if (sleepTimer) clearTimeout(sleepTimer); // Clear any existing timer
+  sleepTimer = setTimeout(() => {
+    audioPlayer.pause();
+    alert("Playback has been stopped due to sleep timer.");
+  }, minutes * 60 * 1000); // Convert minutes to milliseconds
+}
+function searchSongs() {
+  const query = document.getElementById("searchInput").value.toLowerCase();
+  const filteredSongs = songs.filter(song => 
+    song.title.toLowerCase().includes(query) || 
+    song.artist.toLowerCase().includes(query)
+  );
+  
+  loadFilteredSongs(filteredSongs);
+}
+
+function loadFilteredSongs(filteredSongs) {
+  const songList = document.getElementById("songList");
+  songList.innerHTML = "";
+  filteredSongs.forEach(song => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <input type="checkbox" class="song-checkbox" data-song-id="${song.id}">
+      ${song.title} - ${song.artist}
+    `;
+    songList.appendChild(li);
+  });
+}
+let playlists = {};
+
+function createPlaylist() {
+  const playlistName = document.getElementById("playlistName").value;
+  if (!playlistName) {
+    alert("Please enter a playlist name.");
+    return;
+  }
+  
+  if (playlists[playlistName]) {
+    alert("Playlist already exists.");
+    return;
+  }
+  
+  playlists[playlistName] = [];
+  loadPlaylists();
+  document.getElementById("playlistName").value = ""; // Clear input
+}
+
+function loadPlaylists() {
+  const playlistList = document.getElementById("playlistList");
+  playlistList.innerHTML = "";
+  
+  Object.keys(playlists).forEach(name => {
+    const li = document.createElement("li");
+    li.innerHTML = `${name} <button onclick="deletePlaylist('${name}')">Delete</button>`;
+    playlistList.appendChild(li);
+  });
+}
+
+function deletePlaylist(name) {
+  delete playlists[name];
+  loadPlaylists();
 }
