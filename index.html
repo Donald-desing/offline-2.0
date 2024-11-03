@@ -16,6 +16,13 @@
 
   <div class="library">
     <h2>All Songs</h2>
+    <div class="playlist-manager">
+  <h2>Your Playlists</h2>
+  <input type="text" id="playlistName" placeholder="Playlist Name">
+  <button onclick="createPlaylist()">Create Playlist</button>
+  <ul id="playlistList"></ul>
+</div>
+
     <div class="timer">
   <h2>Set Sleep Timer</h2>
   <input type="number" id="sleepTimerInput" placeholder="Minutes">
@@ -47,4 +54,15 @@
   <button onclick="addNewSong()">Add Song</button>
   <ul id="songList"></ul>
   <button id="addToPlaylistButton">Add Selected Songs to Playlist</button>
+</div>
+<div class="timer">
+  <h2>Set Sleep Timer</h2>
+  <input type="number" id="sleepTimerInput" placeholder="Minutes">
+  <button onclick="setSleepTimer()">Start Timer</button>
+</div>
+<div class="playlist-manager">
+  <h2>Your Playlists</h2>
+  <input type="text" id="playlistName" placeholder="Playlist Name">
+  <button onclick="createPlaylist()">Create Playlist</button>
+  <ul id="playlistList"></ul>
 </div>
