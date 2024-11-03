@@ -180,3 +180,12 @@ function prevSong() {
   currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
   loadSongDetails(playlist[currentSongIndex]);
 }
+let sleepTimer;
+
+function setSleepTimer(minutes) {
+  if (sleepTimer) clearTimeout(sleepTimer); // Clear any existing timer
+  sleepTimer = setTimeout(() => {
+    audioPlayer.pause();
+    alert("Playback has been stopped due to sleep timer.");
+  }, minutes * 60 * 1000); // Convert minutes to milliseconds
+}
