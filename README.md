@@ -17,4 +17,5 @@ A simple, lightweight web application for playing downloaded music files offline
 
 1. **Clone this repository:**
    ```bash
+   https://github.com/Donald-desing/offline-2.0.git
    
