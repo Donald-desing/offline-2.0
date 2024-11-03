@@ -1,0 +1,13 @@
+.playlist-manager {
+  margin-top: 20px;
+}
+
+.playlist-manager input, .playlist-manager select, .playlist-manager button {
+  padding: 10px;
+  font-size: 1rem;
+  margin-right: 5px;
+}
+.selected {
+  background-color: #d0eaff;
+  font-weight: bold;
+}
