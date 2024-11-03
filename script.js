@@ -16,6 +16,56 @@ window.onload = function() {
 function loadSongLibrary() {
   const songList = document.getElementById("songList");
   songList.innerHTML = "";
+  let songs = [];
+let playlist = [];
+let currentSongIndex = 0;
+const audioPlayer = document.getElementById("audioPlayer");
+
+window.onload = function() {
+  loadSongLibrary();
+  document.getElementById("addToPlaylistButton").addEventListener("click", addSelectedSongsToPlaylist);
+  if (document.getElementById("playlistSongs")) loadPlaylist();
+};
+
+function loadSongLibrary() {
+  const songList = document.getElementById("songList");
+  songList.innerHTML = "";
+  songs.forEach(song => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <input type="checkbox" class="song-checkbox" data-song-id="${song.id}">
+      ${song.title} - ${song.artist}
+    `;
+    songList.appendChild(li);
+  });
+}
+
+function addNewSong() {
+  const fileInput = document.getElementById("fileInput");
+  const file = fileInput.files[0]; // Get the selected file
+
+  // Validate input
+  if (file) {
+    const title = prompt("Enter song title:");
+    const artist = prompt("Enter artist name:");
+    const newSong = {
+      id: songs.length + 1,
+      title: title || "Unknown Title",
+      artist: artist || "Unknown Artist",
+      file: URL.createObjectURL(file) // Create a URL for the uploaded file
+    };
+    
+    songs.push(newSong); // Add new song to songs array
+    loadSongLibrary();   // Reload the song library to display the new song
+    fileInput.value = ""; // Clear the file input
+  } else {
+    alert("Please select a valid audio file.");
+  }
+}
+
+// ... The rest of the script.js remains unchanged ...
+
+
   songs.forEach(song => {
     const li = document.createElement("li");
     li.innerHTML = `
