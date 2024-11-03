@@ -16,6 +16,12 @@
 
   <div class="library">
     <h2>All Songs</h2>
+    <div class="timer">
+  <h2>Set Sleep Timer</h2>
+  <input type="number" id="sleepTimerInput" placeholder="Minutes">
+  <button onclick="setSleepTimer()">Start Timer</button>
+</div>
+
     <input type="file" id="fileInput" accept="audio/*">
     <button onclick="addNewSong()">Add Song</button>
     <ul id="songList"></ul>
