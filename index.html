@@ -40,3 +40,11 @@
   <script src="script.js"></script>
 </body>
 </html>
+<div class="library">
+  <h2>All Songs</h2>
+  <input type="text" id="searchInput" placeholder="Search songs..." oninput="searchSongs()">
+  <input type="file" id="fileInput" accept="audio/*">
+  <button onclick="addNewSong()">Add Song</button>
+  <ul id="songList"></ul>
+  <button id="addToPlaylistButton">Add Selected Songs to Playlist</button>
+</div>
